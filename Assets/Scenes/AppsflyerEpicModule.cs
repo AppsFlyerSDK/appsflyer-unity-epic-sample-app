@@ -20,7 +20,7 @@ public class AppsflyerEpicModule
         this.mono = mono;
 
         this.af_counter = PlayerPrefs.GetInt("af_counter");
-        // Debug.Log("af_counter: " + af_counter);
+        Debug.Log("af_counter: " + af_counter);
 
         this.af_device_id = PlayerPrefs.GetString("af_device_id");
 
@@ -31,37 +31,33 @@ public class AppsflyerEpicModule
             PlayerPrefs.SetString("af_device_id", af_device_id);
         }
 
-        // Debug.Log("af_device_id: " + af_device_id);
+        Debug.Log("af_device_id: " + af_device_id);
     }
 
-    // report first open event to AppsFlyer (or session if counter > 2)
-    public void Start()
+    private RequestData CreateRequestData()
     {
-        // Debug.Log(SystemInfo.deviceType + " | " + SystemInfo.deviceModel + " | " + SystemInfo.operatingSystem);
-
         // setting the device ids and request body
         DeviceIDs deviceid = new DeviceIDs { type = "custom", value = af_device_id };
         DeviceIDs[] deviceids = { deviceid };
-
-        string deviceModel = SystemInfo.operatingSystem
-            .Replace(" ", "-")
-            .Replace("(", "")
-            .Replace(")", "");
-        if (deviceModel.Length > 24)
-        {
-            deviceModel = deviceModel.Substring(0, 24);
-        }
 
         RequestData req = new RequestData
         {
             timestamp = DateTime.Now.ToString("yyyyMMddHHmmssffff"),
             device_os_version = "1.0.0",
-            device_model = deviceModel,
+            device_model = SystemInfo.operatingSystem,
             app_version = "1.0.0",
             device_ids = deviceids,
             request_id = GenerateGuid(),
             limit_ad_tracking = false
         };
+        return req;
+    }
+
+    // report first open event to AppsFlyer (or session if counter > 2)
+    public void Start()
+    {
+        // generating the request data
+        RequestData req = CreateRequestData();
 
         // set request type
         AppsflyerRequestType REQ_TYPE =
@@ -76,25 +72,11 @@ public class AppsflyerEpicModule
     // report inapp event to AppsFlyer
     public void LogEvent(string event_name, string event_values)
     {
-        // setting the device ids and request body
-        DeviceIDs deviceid = new DeviceIDs { type = "custom", value = af_device_id };
-        DeviceIDs[] deviceids = { deviceid };
-
-        RequestData req = new RequestData
-        {
-            timestamp = DateTime.Now.ToString("yyyyMMddHHmmssffff"),
-            device_os_version = "1.0.0",
-            device_model = SystemInfo.operatingSystem
-                .Replace(" ", "-")
-                .Replace("(", "")
-                .Replace(")", ""),
-            app_version = "1.0.0",
-            device_ids = deviceids,
-            request_id = GenerateGuid(),
-            limit_ad_tracking = false,
-            event_name = event_name,
-            event_values = event_values
-        };
+        // generating the request data
+        RequestData req = CreateRequestData();
+        // setting the event name and value
+        req.event_name = event_name;
+        req.event_values = event_values;
 
         // set request type
         AppsflyerRequestType REQ_TYPE = AppsflyerRequestType.INAPP_EVENT_REQUEST;
@@ -163,7 +145,7 @@ public class AppsflyerEpicModule
                 break;
         }
         Debug.Log("Is success: " + uwr.result);
-        Debug.Log("Response Code:: " + uwr.responseCode);
+        Debug.Log("Response Code: " + uwr.responseCode);
 
         if (uwr.result == UnityWebRequest.Result.ConnectionError)
         {
@@ -184,20 +166,6 @@ public class AppsflyerEpicModule
                     break;
             }
         }
-
-        // // attach the request to the handler based on the request type
-        // switch (REQ_TYPE)
-        // {
-        //     case AppsflyerRequestType.FIRST_OPEN_REQUEST:
-        //         OnHTTPCallBack(HTTPRequestCompleted_t pCallback, bool bIOFailure)
-        //         break;
-        //     case AppsflyerRequestType.SESSION_REQUEST:
-        //         OnHTTPCallBack(HTTPRequestCompleted_t pCallback, bool bIOFailure)
-        //         break;
-        //     case AppsflyerRequestType.INAPP_EVENT_REQUEST:
-        //         OnHTTPCallBack(HTTPRequestCompleted_t pCallback, bool bIOFailure)
-        //         break;
-        // }
     }
 
     // generate GUID for post request and AF id
@@ -206,33 +174,6 @@ public class AppsflyerEpicModule
         Guid myuuid = Guid.NewGuid();
         return myuuid.ToString();
     }
-
-    // handle HTTP callback from steam
-    // private void OnHTTPCallBack(HTTPRequestCompleted_t pCallback, bool bIOFailure)
-    // {
-    //     // handle error
-    //     if (!pCallback.m_bRequestSuccessful || bIOFailure)
-    //     {
-    //         Debug.LogError("ERROR sending req of type: " + pCallback.m_ulContextValue);
-    //         Debug.LogError("status code: " + pCallback.m_eStatusCode);
-    //     } //handle success
-    //     else
-    //     {
-    //         Debug.Log("Success sending req of type: " + pCallback.m_ulContextValue);
-    //         Debug.Log("status code: " + pCallback.m_eStatusCode);
-    //         switch ((AppsflyerRequestType)pCallback.m_ulContextValue)
-    //         {
-    //             // increase the appsflyer counter on a first-open/session request
-    //             case AppsflyerRequestType.FIRST_OPEN_REQUEST:
-    //             case AppsflyerRequestType.SESSION_REQUEST:
-    //                 af_counter++;
-    //                 PlayerPrefs.SetInt("af_counter", af_counter);
-    //                 break;
-    //             case AppsflyerRequestType.INAPP_EVENT_REQUEST:
-    //                 break;
-    //         }
-    //     }
-    // }
 
     // generate hmac auth for post requests
     private string HmacSha256Digest(string message, string secret)

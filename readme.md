@@ -1,4 +1,4 @@
-# AppsFlyer Unity StEpiceam Integration
+# AppsFlyer Unity Epic Integration
 
 ## **Getting started with AppsFlyer Unity Epic Integration**
 
