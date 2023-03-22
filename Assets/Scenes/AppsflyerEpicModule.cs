@@ -153,7 +153,7 @@ public class AppsflyerEpicModule
             Debug.Log("Error While Sending: " + uwr.error);
             // TODO: handle/log error
         }
-        else if (resCode == "202")
+        else if (resCode == "202" || resCode == "200")
         {
             switch (REQ_TYPE)
             {
