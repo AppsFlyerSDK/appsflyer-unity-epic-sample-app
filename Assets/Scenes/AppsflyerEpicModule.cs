@@ -146,13 +146,14 @@ public class AppsflyerEpicModule
         }
         Debug.Log("Is success: " + uwr.result);
         Debug.Log("Response Code: " + uwr.responseCode);
+        string resCode = uwr.responseCode.ToString();
 
         if (uwr.result == UnityWebRequest.Result.ConnectionError)
         {
             Debug.Log("Error While Sending: " + uwr.error);
             // TODO: handle/log error
         }
-        else
+        else if (resCode == "202")
         {
             switch (REQ_TYPE)
             {
@@ -165,6 +166,12 @@ public class AppsflyerEpicModule
                 case AppsflyerRequestType.INAPP_EVENT_REQUEST:
                     break;
             }
+        }
+        else
+        {
+            Debug.Log(
+                "Please try to send the request to 'sandbox-events.appsflyer.com' instead of 'events.appsflyer.com' in order to debug."
+            );
         }
     }
 

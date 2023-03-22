@@ -7,8 +7,7 @@ public class AppsflyerEpicScript : MonoBehaviour
 {
     void Start()
     {
-        // AppsflyerEpicModule afm = new AppsflyerEpicModule("DEV_KEY", "EPIC_APP_ID");
-        AppsflyerEpicModule afm = new AppsflyerEpicModule("DEV_KEY", "APP_ID", this);
+        AppsflyerEpicModule afm = new AppsflyerEpicModule("DEV_KEY", "EPIC_APP_ID", this);
         afm.Start();
 
         // //set event name
