@@ -71,3 +71,14 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 .vscode/settings.json
+Assets/StreamingAssets/EOS.meta
+Assets/StreamingAssets/EOS/eos_android_config.json
+Assets/StreamingAssets/EOS/eos_android_config.json.meta
+Assets/StreamingAssets/EOS/eos_ios_config.json
+Assets/StreamingAssets/EOS/eos_ios_config.json.meta
+Assets/StreamingAssets/EOS/eos_linux_config.json
+Assets/StreamingAssets/EOS/eos_linux_config.json.meta
+Assets/StreamingAssets/EOS/eos_macos_config.json
+Assets/StreamingAssets/EOS/eos_macos_config.json.meta
+Assets/StreamingAssets/EOS/EpicOnlineServicesConfig.json
+Assets/StreamingAssets/EOS/EpicOnlineServicesConfig.json.meta
