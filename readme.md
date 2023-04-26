@@ -65,7 +65,7 @@ afm.LogEvent(event_name, event_values);
 1. Open Unity hub and open the project.
 2. Use the sample code in AppsflyerEpicScript.cs and update it with your DEV_KEY and APP_ID.
 3. Add the AppsflyerEpicScript to an empty game object (or use the one in the scenes folder):
-   ![Request-OK](EpicGameObject.PNG)
+   ![Request-OK](https://files.readme.io/b271553-small-EpicGameObject.PNG)
 4. Launch the sample app via the Unity editor and check that your debug log shows the following message:
-   ![Request-OK](202OK.PNG)
+   ![Request-OK](https://files.readme.io/7105a10-small-202OK.PNG)
 5. After 24 hours, the dashboard will update and show organic/non-organic install and in-app events.
