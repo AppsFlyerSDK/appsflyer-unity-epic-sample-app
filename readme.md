@@ -6,6 +6,10 @@ hidden: true
 slug: unity-epic
 ---
 
+
+> Link to repository
+> [GitHub](https://github.com/AppsFlyerSDK/appsflyer-unity-epic-sample-app)
+
 # AppsFlyer Unity Epic Integration
 
 ## **Getting started with AppsFlyer Unity Epic Integration**
