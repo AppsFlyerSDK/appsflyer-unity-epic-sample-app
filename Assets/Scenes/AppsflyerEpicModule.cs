@@ -75,14 +75,14 @@ public class AppsflyerEpicModule
     }
 
     // report first open event to AppsFlyer (or session if counter > 2)
-    public void Start()
+    public void Start(bool skipFirst = false)
     {
         // generating the request data
         RequestData req = CreateRequestData();
 
         // set request type
         AppsflyerRequestType REQ_TYPE =
-            af_counter < 2
+            af_counter < 2 && !skipFirst
                 ? AppsflyerRequestType.FIRST_OPEN_REQUEST
                 : AppsflyerRequestType.SESSION_REQUEST;
 

@@ -37,14 +37,19 @@ AppsflyerEpicModule afm = new AppsflyerEpicModule("EPIC_APP_ID", "DEV_KEY");
 - `EPIC_APP_ID`: Found in the Epic store link
 - `DEV_KEY`: Get from the marketer or [AppsFlyer HQ](https://support.appsflyer.com/hc/en-us/articles/211719806-App-settings-#general-app-settings).
 
-### `public void Start()`
+### `public void Start(bool skipFirst = false)`
 
 This method sends first open and session requests to AppsFlyer.
 
 **Usage**:
 
 ```
+// without the flag
 afm.Start();
+
+// with the flag
+bool skipFirst = [SOME_CONDITION];
+afm.Start(skipFirst);
 ```
 
 ### `public void LogEvent(string event_name, string event_values)`
@@ -70,3 +75,20 @@ afm.LogEvent(event_name, event_values);
 4. Launch the sample app via the Unity editor and check that your debug log shows the following message:  
    ![Request-OK](https://files.readme.io/7105a10-small-202OK.PNG)
 5. After 24 hours, the AppsFlyer dashboard updates and shows organic and non-organic installs and in-app events.
+
+## Implementing AppsFlyer in your Steam game
+
+### Setup
+
+1. Add Steamworks to your Unity project. Follow the [Epic Online Services Unity plugin instructions](https://github.com/PlayEveryWare/eos_plugin_for_unity) and add it through your package manager.
+2. Add `EOSManager.cs` to a game object.
+3. Add the script from `Assets/Scenes/AppsflyerEpicModule.cs` to your app.
+4. Use the sample code in `Assets/Scenes/AppsflyerEpicScript.cs` and update it with your `DEV_KEY` and `APP_ID`.
+5. Initialize the SDK.
+
+```
+AppsflyerEpicModule afm = new AppsflyerEpicModule("DEV_KEY", "STEAM_APP_ID");
+```
+
+6. [Start](#public-void-startbool-skipfirst--false) the AppsFlyer integration.
+7. Report [in-app events](#public-void-logeventstring-event_name-string-event_values).
