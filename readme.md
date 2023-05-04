@@ -76,18 +76,18 @@ afm.LogEvent(event_name, event_values);
    ![Request-OK](https://files.readme.io/7105a10-small-202OK.PNG)
 5. After 24 hours, the AppsFlyer dashboard updates and shows organic and non-organic installs and in-app events.
 
-## Implementing AppsFlyer in your Steam game
+## Implementing AppsFlyer in your Epic game
 
 ### Setup
 
-1. Add Steamworks to your Unity project. Follow the [Epic Online Services Unity plugin instructions](https://github.com/PlayEveryWare/eos_plugin_for_unity) and add it through your package manager.
+1. Add EOS to your Unity project. Follow the [Epic Online Services Unity plugin instructions](https://github.com/PlayEveryWare/eos_plugin_for_unity) and add it through your package manager.
 2. Add `EOSManager.cs` to a game object.
 3. Add the script from `Assets/Scenes/AppsflyerEpicModule.cs` to your app.
 4. Use the sample code in `Assets/Scenes/AppsflyerEpicScript.cs` and update it with your `DEV_KEY` and `APP_ID`.
 5. Initialize the SDK.
 
 ```
-AppsflyerEpicModule afm = new AppsflyerEpicModule("DEV_KEY", "STEAM_APP_ID");
+AppsflyerEpicModule afm = new AppsflyerEpicModule("DEV_KEY", "EPIC_APP_ID");
 ```
 
 6. [Start](#public-void-startbool-skipfirst--false) the AppsFlyer integration.
