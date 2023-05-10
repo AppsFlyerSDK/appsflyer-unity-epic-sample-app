@@ -86,7 +86,7 @@ public class AppsflyerEpicModule
                 ? AppsflyerRequestType.FIRST_OPEN_REQUEST
                 : AppsflyerRequestType.SESSION_REQUEST;
 
-        // post the request via steam http client
+        // post the request via Epic http client
         mono.StartCoroutine(SendEpicPostReq(req, REQ_TYPE));
     }
 
@@ -102,11 +102,11 @@ public class AppsflyerEpicModule
         // set request type
         AppsflyerRequestType REQ_TYPE = AppsflyerRequestType.INAPP_EVENT_REQUEST;
 
-        // post the request via steam http client
+        // post the request via Epic http client
         mono.StartCoroutine(SendEpicPostReq(req, REQ_TYPE));
     }
 
-    // send post request with Steam HTTP Client
+    // send post request with Epic HTTP Client
     private IEnumerator SendEpicPostReq(RequestData req, AppsflyerRequestType REQ_TYPE)
     {
         // serialize the json and remove empty fields
