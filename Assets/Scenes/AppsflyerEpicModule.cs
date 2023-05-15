@@ -8,6 +8,7 @@ using UnityEditor;
 using UnityEditor.PackageManager;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
 public class AppsflyerEpicModule
 {
@@ -91,13 +92,13 @@ public class AppsflyerEpicModule
     }
 
     // report inapp event to AppsFlyer
-    public void LogEvent(string event_name, string event_values)
+    public void LogEvent(string event_name, Dictionary<string, object> event_parameters)
     {
         // generating the request data
         RequestData req = CreateRequestData();
         // setting the event name and value
         req.event_name = event_name;
-        req.event_values = event_values;
+        req.event_parameters = event_parameters;
 
         // set request type
         AppsflyerRequestType REQ_TYPE = AppsflyerRequestType.INAPP_EVENT_REQUEST;
@@ -250,7 +251,7 @@ class RequestData
     public string request_id;
     public bool limit_ad_tracking;
     public string event_name;
-    public string event_values;
+    public Dictionary<string, object> event_parameters;
 }
 
 [Serializable]
