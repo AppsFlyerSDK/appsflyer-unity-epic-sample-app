@@ -22,14 +22,20 @@ We recommend you use this sample app as a reference for integrating the AppsFlye
 
 `AppsflyerEpicModule.cs`, included in the scenes folder, contains the required code and logic to connect to AppsFlyer servers and report events.
 
-### `AppsflyerEpicModule(string appid, string devkey)`
+### AppsflyerEpicModule
 
-This method receives your API key and app ID and initializes the AppsFlyer Module.
+This method receives your API key, app ID and parent MonoBehaviour and initializes the AppsFlyer Module.
+
+**Method signature**
+
+```
+AppsflyerEpicModule(string appid, string devkey, MonoBehaviour mono)
+```
 
 **Usage**:
 
 ```
-AppsflyerEpicModule afm = new AppsflyerEpicModule("EPIC_APP_ID", "DEV_KEY");
+AppsflyerEpicModule afm = new AppsflyerEpicModule("EPIC_APP_ID", "DEV_KEY", this);
 ```
 
 **Arguments**:
@@ -37,9 +43,15 @@ AppsflyerEpicModule afm = new AppsflyerEpicModule("EPIC_APP_ID", "DEV_KEY");
 - `EPIC_APP_ID`: Found in the Epic store link
 - `DEV_KEY`: Get from the marketer or [AppsFlyer HQ](https://support.appsflyer.com/hc/en-us/articles/211719806-App-settings-#general-app-settings).
 
-### `public void Start(bool skipFirst = false)`
+### Start
 
-This method sends first open and session requests to AppsFlyer.
+This method sends first open/session requests to AppsFlyer.
+
+**Method signature**
+
+```
+void Start(bool skipFirst = false)
+```
 
 **Usage**:
 
@@ -52,9 +64,15 @@ bool skipFirst = [SOME_CONDITION];
 afm.Start(skipFirst);
 ```
 
-### `public void LogEvent(string event_name, Dictionary<string, object> event_parameters)`
+### LogEvent
 
 This method receives an event name and JSON object and sends an in-app event to AppsFlyer.
+
+**Method signature**
+
+```
+void LogEvent(string event_name, Dictionary<string, object> event_parameters)
+```
 
 **Usage**:
 
@@ -91,7 +109,7 @@ afm.LogEvent(event_name, event_parameters);
 5. Initialize the SDK.
 
 ```
-AppsflyerEpicModule afm = new AppsflyerEpicModule("DEV_KEY", "EPIC_APP_ID");
+AppsflyerEpicModule afm = new AppsflyerEpicModule("DEV_KEY", "EPIC_APP_ID", this);
 ```
 
 6. [Start](#public-void-startbool-skipfirst--false) the AppsFlyer integration.
