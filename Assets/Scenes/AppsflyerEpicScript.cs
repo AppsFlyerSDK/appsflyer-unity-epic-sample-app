@@ -10,6 +10,7 @@ public class AppsflyerEpicScript : MonoBehaviour
     {
         AppsflyerEpicModule afm = new AppsflyerEpicModule("DEV_KEY", "EPIC_APP_ID", this);
         afm.Start();
+        string af_uid = afm.GetAppsFlyerUID();
 
         // set event name
         string event_name = "af_purchase";

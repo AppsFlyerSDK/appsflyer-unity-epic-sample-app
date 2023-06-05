@@ -28,13 +28,13 @@ This method receives your API key, app ID and parent MonoBehaviour and initializ
 
 **Method signature**
 
-```
+```c#
 AppsflyerEpicModule(string appid, string devkey, MonoBehaviour mono)
 ```
 
 **Usage**:
 
-```
+```c#
 AppsflyerEpicModule afm = new AppsflyerEpicModule("EPIC_APP_ID", "DEV_KEY", this);
 ```
 
@@ -55,7 +55,7 @@ void Start(bool skipFirst = false)
 
 **Usage**:
 
-```
+```c#
 // without the flag
 afm.Start();
 
@@ -70,13 +70,13 @@ This method receives an event name and JSON object and sends an in-app event to 
 
 **Method signature**
 
-```
+```c#
 void LogEvent(string event_name, Dictionary<string, object> event_parameters)
 ```
 
 **Usage**:
 
-```
+```c#
 // set event name
 string event_name = "af_purchase";
 // set event values
@@ -86,6 +86,24 @@ event_parameters.Add("af_price", 6.66);
 event_parameters.Add("af_revenue", 12.12);
 // send logEvent request
 afm.LogEvent(event_name, event_parameters);
+```
+
+### GetAppsFlyerUID
+
+Get AppsFlyer's unique device ID. The SDK generates an AppsFlyer unique device ID upon app installation. When the SDK is started, this ID is recorded as the ID of the first app install.
+
+**Method signature**
+
+```c#
+void GetAppsFlyerUID()
+```
+
+**Usage**:
+
+```c#
+AppsflyerEpicModule afm = new AppsflyerEpicModule("DEV_KEY", "EPIC_APP_ID", this);
+afm.Start();
+string af_uid = afm.GetAppsFlyerUID();
 ```
 
 ## Running the sample app
@@ -108,9 +126,9 @@ afm.LogEvent(event_name, event_parameters);
 4. Use the sample code in `Assets/Scenes/AppsflyerEpicScript.cs` and update it with your `DEV_KEY` and `APP_ID`.
 5. Initialize the SDK.
 
-```
+```c#
 AppsflyerEpicModule afm = new AppsflyerEpicModule("DEV_KEY", "EPIC_APP_ID", this);
 ```
 
-6. [Start](#public-void-startbool-skipfirst--false) the AppsFlyer integration.
-7. Report [in-app events](#public-void-logeventstring-event_name-dictionarystring-object-event_parameters).
+6. [Start](#start) the AppsFlyer integration.
+7. Report [in-app events](#logevent).

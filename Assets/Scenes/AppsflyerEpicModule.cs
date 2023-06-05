@@ -12,11 +12,11 @@ using System.Collections.Generic;
 
 public class AppsflyerEpicModule
 {
-    public string devkey { get; }
-    public string appid { get; }
-    public int af_counter { get; set; }
-    public string af_device_id { get; }
-    public MonoBehaviour mono { get; }
+    private string devkey { get; }
+    private string appid { get; }
+    private int af_counter { get; set; }
+    private string af_device_id { get; }
+    private MonoBehaviour mono { get; }
 
     public AppsflyerEpicModule(string devkey, string appid, MonoBehaviour mono)
     {
@@ -215,6 +215,11 @@ public class AppsflyerEpicModule
     {
         Guid myuuid = Guid.NewGuid();
         return myuuid.ToString();
+    }
+
+    public string GetAppsFlyerUID()
+    {
+        return this.af_device_id;
     }
 
     // generate hmac auth for post requests
