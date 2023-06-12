@@ -168,6 +168,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6cbd940e7a76964f9dfd7cd44b75f43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DEV_KEY: 
+  EPIC_APP_ID: 
 --- !u!114 &178985856
 MonoBehaviour:
   m_ObjectHideFlags: 0

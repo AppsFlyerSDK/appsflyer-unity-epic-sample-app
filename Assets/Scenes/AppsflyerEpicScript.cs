@@ -6,12 +6,19 @@ using System.Collections.Generic;
 
 public class AppsflyerEpicScript : MonoBehaviour
 {
+    public string DEV_KEY;
+    public string EPIC_APP_ID;
+
     void Start()
     {
-        AppsflyerEpicModule afm = new AppsflyerEpicModule("DEV_KEY", "EPIC_APP_ID", this);
+        AppsflyerEpicModule afm = new AppsflyerEpicModule(DEV_KEY, EPIC_APP_ID, this);
         afm.Start();
         string af_uid = afm.GetAppsFlyerUID();
 
+        bool newerDate = afm.IsInstallOlderThanDate("2023-06-13T10:00:00+02:00");
+        bool olderDate = afm.IsInstallOlderThanDate("2023-02-11T10:00:00+02:00");
+        Debug.Log("newerDate:" + (newerDate ? "true" : "false"));
+        Debug.Log("olderDate:" + (olderDate ? "true" : "false"));
         // set event name
         string event_name = "af_purchase";
         // set event values

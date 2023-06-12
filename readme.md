@@ -88,6 +88,29 @@ event_parameters.Add("af_revenue", 12.12);
 afm.LogEvent(event_name, event_parameters);
 ```
 
+### IsInstallOlderThanDate
+
+This method receives a date string and returns true if the game folder creation date is older than the date string. The date string format is: "2023-03-01T23:12:34+00:00"
+
+**Method signature**
+
+```c#
+bool IsInstallOlderThanDate(string datestring)
+```
+
+**Usage**:
+
+```c#
+// the creation date in this example is "2023-03-23T08:30:00+00:00"
+bool newerDate = afm.IsInstallOlderThanDate("2023-06-13T10:00:00+00:00");
+bool olderDate = afm.IsInstallOlderThanDate("2023-02-11T10:00:00+00:00");
+
+// will return true
+Debug.Log("newerDate:" + (newerDate ? "true" : "false"));
+// will return false
+Debug.Log("olderDate:" + (olderDate ? "true" : "false"));
+```
+
 ### GetAppsFlyerUID
 
 Get AppsFlyer's unique device ID. The SDK generates an AppsFlyer unique device ID upon app installation. When the SDK is started, this ID is recorded as the ID of the first app install.
@@ -101,7 +124,7 @@ void GetAppsFlyerUID()
 **Usage**:
 
 ```c#
-AppsflyerEpicModule afm = new AppsflyerEpicModule("DEV_KEY", "EPIC_APP_ID", this);
+AppsflyerEpicModule afm = new AppsflyerEpicModule(DEV_KEY, EPIC_APP_ID, this);
 afm.Start();
 string af_uid = afm.GetAppsFlyerUID();
 ```
@@ -109,7 +132,8 @@ string af_uid = afm.GetAppsFlyerUID();
 ## Running the sample app
 
 1. Open Unity hub and open the project.
-2. Use the sample code in AppsflyerEpicScript.cs and update it with your DEV_KEY and APP_ID.
+2. Use the sample code in `AppsflyerEpicScript.cs` and update it with your DEV_KEY and APP_ID (in the gaming object).
+   ![gaming-object](https://files.readme.io/ab39287-epic-game-object-deckey-appid.png)
 3. Add the AppsflyerEpicScript to an empty game object (or use the one in the scenes folder):  
    ![Request-OK](https://files.readme.io/b271553-small-EpicGameObject.PNG)
 4. Launch the sample app via the Unity editor and check that your debug log shows the following message:  
@@ -127,7 +151,7 @@ string af_uid = afm.GetAppsFlyerUID();
 5. Initialize the SDK.
 
 ```c#
-AppsflyerEpicModule afm = new AppsflyerEpicModule("DEV_KEY", "EPIC_APP_ID", this);
+AppsflyerEpicModule afm = new AppsflyerEpicModule(DEV_KEY, EPIC_APP_ID, this);
 ```
 
 6. [Start](#start) the AppsFlyer integration.

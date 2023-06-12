@@ -9,6 +9,7 @@ using UnityEditor.PackageManager;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
+using System.IO;
 
 public class AppsflyerEpicModule
 {
@@ -208,6 +209,25 @@ public class AppsflyerEpicModule
                 "Please try to send the request to 'sandbox-events.appsflyer.com' instead of 'events.appsflyer.com' in order to debug."
             );
         }
+    }
+
+    public bool IsInstallOlderThanDate(string date)
+    {
+        bool isInstallOlder = false;
+
+        string dataPath = Application.dataPath;
+        // Debug.Log("dataPath: " + dataPath);
+        DateTime createdTime = Directory.GetCreationTime(dataPath);
+        // Debug.Log("createdTime: " + createdTime);
+        DateTime checkDate = DateTime.Parse(date);
+        // Debug.Log("checkDate: " + checkDate);
+
+        if (createdTime != null)
+        {
+            isInstallOlder = DateTime.Compare(createdTime, checkDate) < 0;
+        }
+
+        return isInstallOlder;
     }
 
     // generate GUID for post request and AF id
