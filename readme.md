@@ -156,3 +156,8 @@ AppsflyerEpicModule afm = new AppsflyerEpicModule(DEV_KEY, EPIC_APP_ID, this);
 
 6. [Start](#start) the AppsFlyer integration.
 7. Report [in-app events](#logevent).
+
+## Resetting the attribution
+
+1. [Delete the PlayerPrefs data the registry/preferences folder](https://docs.unity3d.com/ScriptReference/PlayerPrefs.html), or use [PlayerPrefs.DeleteAll()](https://docs.unity3d.com/2020.1/Documentation/ScriptReference/PlayerPrefs.DeleteAll.html) when testing the attribution in the UnityEditor.
+   ![AF guid & counter in the Windows Registry](https://files.readme.io/51b1681-image.png)
