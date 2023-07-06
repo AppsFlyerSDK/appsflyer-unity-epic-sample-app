@@ -218,9 +218,17 @@ public class AppsflyerEpicModule
         }
         else
         {
-            Debug.Log(
-                "Please try to send the request to 'sandbox-events.appsflyer.com' instead of 'events.appsflyer.com' in order to debug."
-            );
+            Debug.Log("error: " + uwr.error);
+            if (!isSandbox)
+            {
+                Debug.Log(
+                    "Please try to send the request to 'sandbox-events.appsflyer.com' instead of 'events.appsflyer.com' in order to debug."
+                );
+            }
+            else
+            {
+                Debug.Log("error detail: " + uwr.downloadHandler.text);
+            }
         }
     }
 
