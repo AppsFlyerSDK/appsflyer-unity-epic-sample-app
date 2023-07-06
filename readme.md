@@ -24,18 +24,22 @@ We recommend you use this sample app as a reference for integrating the AppsFlye
 
 ### AppsflyerEpicModule
 
-This method receives your API key, app ID and parent MonoBehaviour and initializes the AppsFlyer Module.
+This method receives your API key, app ID, the parent MonoBehaviour and a sandbox mode flag (optional, false by default) and initializes the AppsFlyer Module.
 
 **Method signature**
 
 ```c#
-AppsflyerEpicModule(string appid, string devkey, MonoBehaviour mono)
+AppsflyerEpicModule(string appid, string devkey, MonoBehaviour mono, bool isSandbox = false)
 ```
 
 **Usage**:
 
 ```c#
-AppsflyerEpicModule afm = new AppsflyerEpicModule("EPIC_APP_ID", "DEV_KEY", this);
+// for regular init
+AppsflyerEpicModule afm = new AppsflyerEpicModule(DEV_KEY, EPIC_APP_ID, this);
+
+// for init in sandbox mode (reports the events to the sandbox endpoint)
+AppsflyerEpicModule afm = new AppsflyerEpicModule(DEV_KEY, EPIC_APP_ID, this, true);
 ```
 
 **Arguments**:
