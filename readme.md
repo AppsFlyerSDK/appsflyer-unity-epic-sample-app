@@ -94,7 +94,7 @@ afm.LogEvent(event_name, event_parameters);
 
 ### IsInstallOlderThanDate
 
-This method receives a date string and returns true if the game folder creation date is older than the date string. The date string format is: "2023-03-01T23:12:34+00:00"
+This method receives a date string and returns true if the game folder creation date is older than the date string. The date string format is: "2023-03-13T10:00:00+00:00"
 
 **Method signature**
 
@@ -114,9 +114,10 @@ Debug.Log("newerDate:" + (newerDate ? "true" : "false"));
 // will return false
 Debug.Log("olderDate:" + (olderDate ? "true" : "false"));
 
-// example usage with skipFirst:
-bool isInstallOlderThanDate = afm.IsInstallOlderThanDate("2023-02-11T10:00:00+00:00");
-afm.Start(isInstallOlderThanDate);
+// example usage with skipFirst -
+// skipping if the install date is NOT older than the given date
+bool olderDate = afm.IsInstallOlderThanDate("2023-02-11T10:00:00+00:00");
+afm.Start(!olderDate);
 ```
 
 ### GetAppsFlyerUID
