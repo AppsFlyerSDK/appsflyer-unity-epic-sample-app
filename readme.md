@@ -36,10 +36,10 @@ AppsflyerEpicModule(string appid, string devkey, MonoBehaviour mono, bool isSand
 
 ```c#
 // for regular init
-AppsflyerEpicModule afm = new AppsflyerEpicModule(DEV_KEY, EPIC_APP_ID, this);
+AppsflyerEpicModule afm = new AppsflyerEpicModule(<< DEV_KEY >>, << EPIC_APP_ID >>, this);
 
 // for init in sandbox mode (reports the events to the sandbox endpoint)
-AppsflyerEpicModule afm = new AppsflyerEpicModule(DEV_KEY, EPIC_APP_ID, this, true);
+AppsflyerEpicModule afm = new AppsflyerEpicModule(<< DEV_KEY >>, << EPIC_APP_ID >>, this, true);
 ```
 
 **Arguments**:
@@ -113,6 +113,10 @@ bool olderDate = afm.IsInstallOlderThanDate("2023-02-11T10:00:00+00:00");
 Debug.Log("newerDate:" + (newerDate ? "true" : "false"));
 // will return false
 Debug.Log("olderDate:" + (olderDate ? "true" : "false"));
+
+// example usage with skipFirst:
+bool isInstallOlderThanDate = afm.IsInstallOlderThanDate("2023-02-11T10:00:00+00:00");
+afm.Start(isInstallOlderThanDate);
 ```
 
 ### GetAppsFlyerUID
@@ -128,7 +132,7 @@ void GetAppsFlyerUID()
 **Usage**:
 
 ```c#
-AppsflyerEpicModule afm = new AppsflyerEpicModule(DEV_KEY, EPIC_APP_ID, this);
+AppsflyerEpicModule afm = new AppsflyerEpicModule(<< DEV_KEY >>, << EPIC_APP_ID >>, this);
 afm.Start();
 string af_uid = afm.GetAppsFlyerUID();
 ```
@@ -155,7 +159,7 @@ string af_uid = afm.GetAppsFlyerUID();
 5. Initialize the SDK.
 
 ```c#
-AppsflyerEpicModule afm = new AppsflyerEpicModule(DEV_KEY, EPIC_APP_ID, this);
+AppsflyerEpicModule afm = new AppsflyerEpicModule(<< DEV_KEY >>, << EPIC_APP_ID >>, this);
 ```
 
 6. [Start](#start) the AppsFlyer integration.
