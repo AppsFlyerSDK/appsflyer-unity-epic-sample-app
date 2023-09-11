@@ -45,8 +45,10 @@ AppsflyerEpicModule afm = new AppsflyerEpicModule(<< DEV_KEY >>, << EPIC_APP_ID 
 
 **Arguments**:
 
-- `EPIC_APP_ID`: Found in the Epic store link
 - `DEV_KEY`: Get from the marketer or [AppsFlyer HQ](https://support.appsflyer.com/hc/en-us/articles/211719806-App-settings-#general-app-settings).
+- `EPIC_APP_ID`: Found in the Epic store link
+- `MonoBehaviour mono`:
+- `bool isSandbox`: Whether to activate sandbox mode. False by default.
 
 ### Start
 
@@ -67,6 +69,27 @@ afm.Start();
 // with the flag
 bool skipFirst = [SOME_CONDITION];
 afm.Start(skipFirst);
+```
+
+### Stop
+
+Once this method is invoked, our SDK no longer communicates with our servers and stops functioning.
+Useful when implementing user opt-in/opt-out.
+
+**Method signature**
+
+```c#
+void Stop()
+```
+
+**Usage**:
+
+```c#
+// Starting the SDK
+afm.Start();
+// ...
+// Stopping the SDK, preventing further communication with AppsFlyer
+afm.Stop();
 ```
 
 ### LogEvent
@@ -137,6 +160,27 @@ void GetAppsFlyerUID()
 AppsflyerEpicModule afm = new AppsflyerEpicModule(<< DEV_KEY >>, << EPIC_APP_ID >>, this);
 afm.Start();
 string af_uid = afm.GetAppsFlyerUID();
+```
+
+
+### SetCustomerUserId
+
+Setting your own customer ID enables you to cross-reference your own unique ID with AppsFlyer’s unique ID and other devices’ IDs.
+This ID is available in raw-data reports and in the Postback APIs for cross-referencing with your internal IDs.
+Can be used only before calling `Start()`.
+
+**Method signature**
+
+```c#
+void SetCustomerUserId(string cuid)
+```
+
+**Usage**:
+
+```c#
+AppsflyerEpicModule afm = new AppsflyerEpicModule(DEV_KEY, STEAM_APP_ID, this);
+afm.SetCustomerUserId("15667737-366d-4994-ac8b-653fe6b2be4a");
+afm.Start();
 ```
 
 ## Running the sample app
