@@ -8,13 +8,15 @@ public class AppsflyerEpicScript : MonoBehaviour
 {
     public string DEV_KEY;
     public string EPIC_APP_ID;
+    public bool IS_SANDBOX;
 
     void Start()
     {
-        AppsflyerEpicModule afm = new AppsflyerEpicModule(DEV_KEY, EPIC_APP_ID, this);
+        AppsflyerEpicModule afm = new AppsflyerEpicModule(DEV_KEY, EPIC_APP_ID, this, IS_SANDBOX);
+        // afm.SetCustomerUserId("e4e0d3bc-f402-4194-abea-7b82b12704a7");
         afm.Start();
-        string af_uid = afm.GetAppsFlyerUID();
 
+        // string af_uid = afm.GetAppsFlyerUID();
         // bool newerDate = afm.IsInstallOlderThanDate("2023-06-13T10:00:00+02:00");
         // bool olderDate = afm.IsInstallOlderThanDate("2023-02-11T10:00:00+02:00");
         // Debug.Log("newerDate:" + (newerDate ? "true" : "false"));
