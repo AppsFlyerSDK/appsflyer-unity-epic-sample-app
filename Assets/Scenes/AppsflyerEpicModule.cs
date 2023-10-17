@@ -293,7 +293,8 @@ public class AppsflyerEpicModule
     // generate hmac auth for post requests
     private string HmacSha256Digest(string message, string secret)
     {
-        UTF8Encoding encoding = new UTF8Encoding(); byte[] keyBytes = encoding.GetBytes(secret);
+        UTF8Encoding encoding = new UTF8Encoding();
+        byte[] keyBytes = encoding.GetBytes(secret);
         byte[] messageBytes = encoding.GetBytes(message);
         System.Security.Cryptography.HMACSHA256 cryptographer =
             new System.Security.Cryptography.HMACSHA256(keyBytes);
