@@ -112,9 +112,10 @@ public class AppsflyerEpicModule
 
     public void SetCustomerUserId(string cuid)
     {
-        if (!isStopped) {
+        if (!isStopped)
+        {
             Debug.LogWarning("Cannot set CustomerUserID while the SDK has started.");
-            return; 
+            return;
         }
         Debug.Log("Customer User ID has been set");
         this.cuid = cuid;
@@ -123,7 +124,8 @@ public class AppsflyerEpicModule
     // report inapp event to AppsFlyer
     public void LogEvent(string event_name, Dictionary<string, object> event_parameters)
     {
-        if (isStopped) {
+        if (isStopped)
+        {
             Debug.LogWarning("Cannot send LogEvent, the Appsflyer SDK is stopped");
             return;
         }
@@ -291,8 +293,7 @@ public class AppsflyerEpicModule
     // generate hmac auth for post requests
     private string HmacSha256Digest(string message, string secret)
     {
-        ASCIIEncoding encoding = new ASCIIEncoding();
-        byte[] keyBytes = encoding.GetBytes(secret);
+        UTF8Encoding encoding = new UTF8Encoding(); byte[] keyBytes = encoding.GetBytes(secret);
         byte[] messageBytes = encoding.GetBytes(message);
         System.Security.Cryptography.HMACSHA256 cryptographer =
             new System.Security.Cryptography.HMACSHA256(keyBytes);
