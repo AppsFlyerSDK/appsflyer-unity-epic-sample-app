@@ -47,7 +47,7 @@ AppsflyerEpicModule afm = new AppsflyerEpicModule(<< DEV_KEY >>, << EPIC_APP_ID 
 
 - `DEV_KEY`: Get from the marketer or [AppsFlyer HQ](https://support.appsflyer.com/hc/en-us/articles/211719806-App-settings-#general-app-settings).
 - `EPIC_APP_ID`: Found in the Epic store link
-- `MonoBehaviour mono`:
+- `MonoBehaviour mono`: the parent MonoBehaviour.
 - `bool isSandbox`: Whether to activate sandbox mode. False by default. This option is for debugging. With the sandbox mode, AppsFlyer dashboard does not show the data. 
 
 ### Start
