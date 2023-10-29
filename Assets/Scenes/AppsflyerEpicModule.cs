@@ -202,7 +202,7 @@ public class AppsflyerEpicModule
         uwr.SetRequestHeader("Authorization", auth);
         uwr.SetRequestHeader(
             "user-agent",
-            "EpicGamesLaucnher/"
+            "EpicGamesLauncher/"
                 + eosPack.version
                 + " ("
                 + SystemInfo.operatingSystem.Replace("(", "").Replace(")", "")
