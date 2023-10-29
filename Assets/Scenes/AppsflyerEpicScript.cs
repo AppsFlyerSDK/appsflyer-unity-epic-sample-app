@@ -13,15 +13,13 @@ public class AppsflyerEpicScript : MonoBehaviour
     void Start()
     {
         AppsflyerEpicModule afm = new AppsflyerEpicModule(DEV_KEY, EPIC_APP_ID, this, IS_SANDBOX);
-        // afm.SetCustomerUserId("e4e0d3bc-f402-4194-abea-7b82b12704a7");
+       
+       // set CUID
+        afm.SetCustomerUserId("testTEST12345");
+        // start the SDK (send firstopen/session request)
         afm.Start();
 
-        // string af_uid = afm.GetAppsFlyerUID();
-        // bool newerDate = afm.IsInstallOlderThanDate("2023-06-13T10:00:00+02:00");
-        // bool olderDate = afm.IsInstallOlderThanDate("2023-02-11T10:00:00+02:00");
-        // Debug.Log("newerDate:" + (newerDate ? "true" : "false"));
-        // Debug.Log("olderDate:" + (olderDate ? "true" : "false"));
-
+        // LogEvent example
         // set event name
         string event_name = "af_purchase";
         // set event values
@@ -31,6 +29,22 @@ public class AppsflyerEpicScript : MonoBehaviour
         event_parameters.Add("af_revenue", 12.12);
         // send logEvent request
         afm.LogEvent(event_name, event_parameters);
+        // send logEvent request with custom params
+        Dictionary<string, object> event_custom_parameters = new Dictionary<string, object>();
+        event_custom_parameters.Add("goodsName", "新人邀约购物日");
+        afm.LogEvent(event_name, event_parameters, event_custom_parameters);
+        
+        // the creation date in this example is "2023-03-23T08:30:00+00:00"
+        bool newerDate = afm.IsInstallOlderThanDate("2023-06-13T10:00:00+00:00");
+        bool olderDate = afm.IsInstallOlderThanDate("2023-02-11T10:00:00+00:00");
+
+        // will return true
+        Debug.Log("newerDate:" + (newerDate ? "true" : "false"));
+        // will return false
+        Debug.Log("olderDate:" + (olderDate ? "true" : "false"));
+
+        // stop the SDK
+        afm.Stop();
     }
 
     private void Update() { }
