@@ -262,6 +262,8 @@ public class AppsflyerEpicModule
                 Debug.Log("error detail: " + uwr.downloadHandler.text);
             }
         }
+
+        uwr.Dispose();
     }
 
     public bool IsInstallOlderThanDate(string date)
