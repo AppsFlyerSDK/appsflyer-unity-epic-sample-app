@@ -212,6 +212,33 @@ afm.SetCustomerUserId("15667737-366d-4994-ac8b-653fe6b2be4a");
 afm.Start();
 ```
 
+### SetSharingFilterForPartners
+
+This method lets you configure which partners should the SDK exclude from data-sharing. Partners that are excluded with this method will not receive data through postbacks, APIs, raw data reports, or any other means.
+
+**Method signature**
+
+```c#
+public void SetSharingFilterForPartners(List<string> sharingFilter)
+```
+
+**Arguments**:
+
+- `List<string> sharingFilter`: a list of partners to filter. For example:  `new List<string>() {"partner1_int", "partner2_int"};`
+
+**Usage**:
+
+```c#
+AppsflyerEpicModule afm = new AppsflyerEpicModule(DEV_KEY, APP_ID, this);
+
+// set the sharing filter
+var sharingFilter = new List<string>() {"partner1_int", "partner2_int"};
+afm.SetSharingFilterForPartners(sharingFilter);
+
+// start the SDK (send firstopen/session request)
+afm.Start();
+```
+
 ## Running the sample app
 
 1. Open Unity hub and open the project.
