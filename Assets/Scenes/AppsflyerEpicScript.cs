@@ -9,13 +9,19 @@ public class AppsflyerEpicScript : MonoBehaviour
     public string DEV_KEY;
     public string EPIC_APP_ID;
     public bool IS_SANDBOX;
+    public List<string> SHARING_FILTER = null;
 
     void Start()
     {
         AppsflyerEpicModule afm = new AppsflyerEpicModule(DEV_KEY, EPIC_APP_ID, this, IS_SANDBOX);
-       
-       // set CUID
+
+        // set CUID
         afm.SetCustomerUserId("testTEST12345");
+
+        // set the sharing filter, for this example: 
+        // SHARING_FILTER = new List<string>() {"partner1_int", "partner2_int"};
+        afm.SetSharingFilterForPartners(SHARING_FILTER);
+
         // start the SDK (send firstopen/session request)
         afm.Start();
 
@@ -33,7 +39,7 @@ public class AppsflyerEpicScript : MonoBehaviour
         Dictionary<string, object> event_custom_parameters = new Dictionary<string, object>();
         event_custom_parameters.Add("goodsName", "新人邀约购物日");
         afm.LogEvent(event_name, event_parameters, event_custom_parameters);
-        
+
         // the creation date in this example is "2023-03-23T08:30:00+00:00"
         bool newerDate = afm.IsInstallOlderThanDate("2023-06-13T10:00:00+00:00");
         bool olderDate = afm.IsInstallOlderThanDate("2023-02-11T10:00:00+00:00");

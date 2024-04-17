@@ -13,9 +13,10 @@ using System.IO;
 
 public class AppsflyerEpicModule
 {
-    private bool isSandbox { get; }
     private string devkey { get; }
     private string appid { get; }
+    private bool isSandbox { get; }
+    private List<string> sharingFilter { get; set; }
     private int af_counter { get; set; }
     private string af_device_id { get; }
     private string cuid { get; set; }
@@ -33,6 +34,7 @@ public class AppsflyerEpicModule
         this.devkey = devkey;
         this.appid = appid;
         this.mono = mono;
+        this.sharingFilter = null;
         this.isStopped = true;
 
         this.af_counter = PlayerPrefs.GetInt("af_counter");
@@ -82,7 +84,8 @@ public class AppsflyerEpicModule
             device_ids = deviceids,
             request_id = GenerateGuid(),
             limit_ad_tracking = false,
-            customer_user_id = cuid
+            customer_user_id = cuid,
+            sharing_filter = this.sharingFilter
         };
         return req;
     }
@@ -119,6 +122,12 @@ public class AppsflyerEpicModule
         }
         Debug.Log("Customer User ID has been set");
         this.cuid = cuid;
+    }
+
+    public void SetSharingFilterForPartners(List<string> sharingFilter)
+    {
+        this.sharingFilter = sharingFilter;
+        Debug.Log("Sharing filter for partners has been set");
     }
 
     // report inapp event to AppsFlyer
@@ -331,6 +340,7 @@ class RequestData
     public string request_id;
     public bool limit_ad_tracking;
     public string customer_user_id;
+    public List<string> sharing_filter;
     public string event_name;
     public Dictionary<string, object> event_parameters;
     public Dictionary<string, object> event_custom_parameters;
